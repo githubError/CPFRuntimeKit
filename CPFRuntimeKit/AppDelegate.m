@@ -9,8 +9,11 @@
 #import "AppDelegate.h"
 #import "CPFTestClass.h"
 #import "CPFRuntimeKit.h"
+#import "CPFWeakSingleton.h"
 
 @interface AppDelegate ()
+
+@property (nonatomic, strong) CPFWeakSingleton *strongInstance;
 
 @end
 
@@ -39,7 +42,34 @@
     // 根据 字符串类名，runtime 执行方法
     [@"CPFTestClass" invokeClassMethod:@"testClassMethod"];
     
+    
+    // 可自动释放的单例模式
+    /**
+    
+//    [self testWeakInstanceMethod];
+    
+    _strongInstance = [CPFWeakSingleton sharedInstacne];
+    NSLog(@"1---%p",_strongInstance);
+    _strongInstance.testStr = @"保留所有权";
+    NSLog(@"2---%p",_strongInstance);
+    
+    _strongInstance = nil;
+    
+    sleep(5);
+    NSLog(@"3---%p",[CPFWeakSingleton sharedInstacne]);
+    
+     */
+    
     return YES;
+}
+
+- (void)testWeakInstanceMethod {
+    
+    CPFWeakSingleton *testInstance = [CPFWeakSingleton sharedInstacne];
+    NSLog(@"4---%p",testInstance);
+    testInstance.testStr = @"保留所有权";
+    NSLog(@"5---%p",testInstance);
+    testInstance.testStr = nil;
 }
 
 @end

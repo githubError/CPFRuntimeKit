@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D12733841FC0270400B042DF /* CPFTestClass+category.m in Sources */ = {isa = PBXBuildFile; fileRef = D12733831FC0270400B042DF /* CPFTestClass+category.m */; };
 		D12733871FC02C3000B042DF /* CPFTestTransmitClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D12733861FC02C3000B042DF /* CPFTestTransmitClass.m */; };
+		D15B2B691FC279C400EE9B74 /* CPFWeakSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = D15B2B681FC279C400EE9B74 /* CPFWeakSingleton.m */; };
 		D1DCB04F1FBEAAD000CC37D3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1DCB04E1FBEAAD000CC37D3 /* AppDelegate.m */; };
 		D1DCB0521FBEAAD000CC37D3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1DCB0511FBEAAD000CC37D3 /* ViewController.m */; };
 		D1DCB0551FBEAAD000CC37D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1DCB0531FBEAAD000CC37D3 /* Main.storyboard */; };
@@ -25,6 +26,8 @@
 		D12733831FC0270400B042DF /* CPFTestClass+category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CPFTestClass+category.m"; sourceTree = "<group>"; };
 		D12733851FC02C3000B042DF /* CPFTestTransmitClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CPFTestTransmitClass.h; sourceTree = "<group>"; };
 		D12733861FC02C3000B042DF /* CPFTestTransmitClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CPFTestTransmitClass.m; sourceTree = "<group>"; };
+		D15B2B671FC279C400EE9B74 /* CPFWeakSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CPFWeakSingleton.h; sourceTree = "<group>"; };
+		D15B2B681FC279C400EE9B74 /* CPFWeakSingleton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CPFWeakSingleton.m; sourceTree = "<group>"; };
 		D1DCB04A1FBEAAD000CC37D3 /* CPFRuntimeKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CPFRuntimeKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1DCB04D1FBEAAD000CC37D3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D1DCB04E1FBEAAD000CC37D3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -56,6 +59,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D15B2B661FC2798700EE9B74 /* WeakSingleton */ = {
+			isa = PBXGroup;
+			children = (
+				D15B2B671FC279C400EE9B74 /* CPFWeakSingleton.h */,
+				D15B2B681FC279C400EE9B74 /* CPFWeakSingleton.m */,
+			);
+			path = WeakSingleton;
+			sourceTree = "<group>";
+		};
 		D1DCB0411FBEAAD000CC37D3 = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +87,7 @@
 		D1DCB04C1FBEAAD000CC37D3 /* CPFRuntimeKit */ = {
 			isa = PBXGroup;
 			children = (
+				D15B2B661FC2798700EE9B74 /* WeakSingleton */,
 				D1DCB0741FBEAB8F00CC37D3 /* Demo */,
 				D1DCB0631FBEAAE200CC37D3 /* CPFRuntimeKit */,
 				D1DCB04D1FBEAAD000CC37D3 /* AppDelegate.h */,
@@ -193,6 +206,7 @@
 				D12733871FC02C3000B042DF /* CPFTestTransmitClass.m in Sources */,
 				D1DCB0721FBEAAEE00CC37D3 /* CPFTestClass.m in Sources */,
 				D1DCB05D1FBEAAD000CC37D3 /* main.m in Sources */,
+				D15B2B691FC279C400EE9B74 /* CPFWeakSingleton.m in Sources */,
 				D1DCB06A1FBEAAE200CC37D3 /* CPFRuntimeInvoker.m in Sources */,
 				D1DCB0691FBEAAE200CC37D3 /* CPFRuntimeHelper.m in Sources */,
 				D1DCB04F1FBEAAD000CC37D3 /* AppDelegate.m in Sources */,
