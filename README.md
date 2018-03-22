@@ -64,6 +64,7 @@ CPFTestClass *test = CPFTestClass.new;
 ```
 以上仅展示一些相关API，具体说明和使用请参考Demo，内附有完整注释。
 
+#### 特别的
 除此之外，里面一些实现的细节需要简单的说明一下，最主要的是**NSInvocation**相关的理解：
 
 1. NSInvocation对象被用于对象存储以及对象与Application之间的消息转发；
