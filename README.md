@@ -140,4 +140,6 @@ NSLog(@"3---%p",[CPFWeakSingleton sharedInstacne]);
 
 ### 四、CPFTestClass
 
+有关消息转发的一些内容，网上有很多相关的资料说的都很清楚，在这里就不做过多的赘述。本Demo中主要是结合CPFRuntimeHelper和CPFRuntimeInvoker去强行实现消息转发的过程，以及解决消息转发带来的doesNotRecognizeSelector异常Crash的问题。
 
+以上仅展示一些相关API，具体说明和使用请参考Demo，内附有完整注释。
