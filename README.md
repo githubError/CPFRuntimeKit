@@ -73,3 +73,71 @@ CPFTestClass *test = CPFTestClass.new;
 7. 需要知道的是，编译器在处理可变参数的时候，是根据第一个可变参数在内存中的地址、参数类型、偏移量等动态的计算出下一个参数的位置，从而取得相应的值，直到读取到nil为止；
 8. 在6中的宏定义，就是利用了这个特性将可变参数转换成NSArray的。
 
+
+### 三、CPFWeakSingleton
+
+在开发中，我们通常会使用单例模式，但是单例会有一个不好的问题就是，**在整个程序的运行周期中，单例对象都不会被释放，从而会对内存造成一定的影响**，那么我们可以利用 weak 关键字对单例模式进行改造，达到**如果单例对象被外部持有，则永远不会被释放，一旦不被外部持有，则会在 Runloop 时被回收内存**的目的。
+
+以名为CPFWeakSingleton的类名为例，代码如下：
+```objc
+@implementation CPFWeakSingleton
+
++ (instancetype)sharedInstacne {
+return [[self alloc] init];
+}
+
++ (instancetype)allocWithZone:(struct _NSZone *)zone {
+static __weak CPFWeakSingleton *weakInstance;
+CPFWeakSingleton *strongInstance = weakInstance;
+@synchronized(self) {
+if (strongInstance == nil) {
+strongInstance = [super allocWithZone:zone];
+weakInstance = strongInstance;
+}
+}
+return strongInstance;
+}
+@end
+```
+下面对其进行验证：
+```
+_strongInstance = [CPFWeakSingleton sharedInstacne];
+NSLog(@"1---%p",_strongInstance);
+_strongInstance.testStr = @"保留所有权";
+NSLog(@"2---%p",_strongInstance);
+
+sleep(5);
+NSLog(@"3---%p",[CPFWeakSingleton sharedInstacne]);
+```
+运行结果如下：
+```
+1---0x604000202ea0
+2---0x604000202ea0
+3---0x604000202ea0
+```
+可以看出，当我们通过_strongInstance变量持有单例对象时，在经过 Runloop 之后，单例对象也不会被释放（sleep函数是为了验证 Runloop 后对象是否会被回收）。
+
+然而我们对上例稍加改动，使_strongInstance被释放后会发生什么呢？
+```
+_strongInstance = [CPFWeakSingleton sharedInstacne];
+NSLog(@"1---%p",_strongInstance);
+_strongInstance.testStr = @"保留所有权";
+NSLog(@"2---%p",_strongInstance);
+
+_strongInstance = nil;
+
+sleep(5);
+NSLog(@"3---%p",[CPFWeakSingleton sharedInstacne]);
+```
+此时的运行结果如下：
+```
+1---0x600000009430
+2---0x600000009430
+3---0x604000007570
+```
+可以看出，当外部的_strongInstance对象被释放，不再持有单例对象的时候，或者超出此时单例对象的作用域时（上述代码未演示），该单例对象也会在 Runloop 中被系统回收，当我们再次使用sharedInstacne类方法获取单例对象的时候，则会创建一个新的单例对象。这样，就能即使用单例，又解决了产生的单例对象一直占用内存资源，而且在整个程序的运行周期内都不会被释放的问题。
+
+
+### 四、CPFTestClass
+
+
