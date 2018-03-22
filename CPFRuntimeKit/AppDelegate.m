@@ -43,7 +43,7 @@
     [@"CPFTestClass" invokeClassMethod:@"testClassMethod"];
     
     
-    // 可自动释放的单例模式
+    // 可自动释放的单例模式，打开注释显示运行效果
     /**
     
 //    [self testWeakInstanceMethod];
