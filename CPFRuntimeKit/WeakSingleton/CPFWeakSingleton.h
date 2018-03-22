@@ -10,8 +10,6 @@
 
 @interface CPFWeakSingleton : NSObject
 
-@property (nonatomic, copy) NSString *testStr;
-
 + (instancetype)sharedInstacne;
 
 @end
